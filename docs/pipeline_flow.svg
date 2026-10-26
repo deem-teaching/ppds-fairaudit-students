@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="722" viewBox="0 0 680 722" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title>Full pipeline run, colour coded by owner</title>
+  <desc>Flow of one run: load_data, compute_target, train/test split, then a training branch (filter_train, prepare_train, encode_train) and a test branch (prepare_test, encode_test). get_model feeds train, train feeds predict, then evaluation and PipelineResult. Purple is the runner, gray the provided base class, teal the student's pipeline; the dashed predict box may be overridden.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#73726C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .runner { fill: #EEEDFE; stroke: #534AB7; }
+      .base   { fill: #F1EFE8; stroke: #5F5E5A; }
+      .yours  { fill: #E1F5EE; stroke: #0F6E56; }
+      .runner-t { fill: #3C3489; }
+      .base-t   { fill: #444441; }
+      .yours-t  { fill: #085041; }
+      .label  { font-size: 14px; font-weight: 500; text-anchor: middle; dominant-baseline: central; }
+      .legend { font-size: 12px; fill: #5F5E5A; dominant-baseline: central; }
+      .arr    { fill: none; stroke: #73726C; stroke-width: 1.5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="680" height="722" fill="#FFFFFF"/>
+
+  <rect class="base" x="315" y="40" width="200" height="44" rx="6"/>
+  <text class="label base-t" x="415" y="62">load_data</text>
+  <line class="arr" x1="415" y1="84" x2="415" y2="108"/>
+
+  <rect class="base" x="315" y="110" width="200" height="44" rx="6"/>
+  <text class="label base-t" x="415" y="132">compute_target</text>
+  <line class="arr" x1="415" y1="154" x2="415" y2="178"/>
+
+  <rect class="runner" x="315" y="180" width="200" height="44" rx="6"/>
+  <text class="label runner-t" x="415" y="202">Train/test split</text>
+  <path class="arr" d="M415 224 L415 237 L300 237 L300 248"/>
+  <path class="arr" d="M415 237 L530 237 L530 318"/>
+
+  <rect class="base" x="200" y="250" width="200" height="44" rx="6"/>
+  <text class="label base-t" x="300" y="272">filter_train</text>
+  <line class="arr" x1="300" y1="294" x2="300" y2="318"/>
+
+  <rect class="base" x="200" y="320" width="200" height="44" rx="6"/>
+  <text class="label base-t" x="300" y="342">prepare_train</text>
+  <rect class="base" x="430" y="320" width="200" height="44" rx="6"/>
+  <text class="label base-t" x="530" y="342">prepare_test</text>
+  <line class="arr" x1="300" y1="364" x2="300" y2="388"/>
+  <line class="arr" x1="530" y1="364" x2="530" y2="388"/>
+
+  <rect class="yours" x="200" y="390" width="200" height="44" rx="6"/>
+  <text class="label yours-t" x="300" y="412">encode_train</text>
+  <rect class="yours" x="430" y="390" width="200" height="44" rx="6"/>
+  <text class="label yours-t" x="530" y="412">encode_test</text>
+  <line class="arr" x1="300" y1="434" x2="300" y2="458"/>
+  <line class="arr" x1="530" y1="434" x2="530" y2="458"/>
+
+  <rect class="yours" x="40" y="460" width="140" height="44" rx="6"/>
+  <text class="label yours-t" x="110" y="482">get_model</text>
+  <line class="arr" x1="180" y1="482" x2="198" y2="482"/>
+  <rect class="base" x="200" y="460" width="200" height="44" rx="6"/>
+  <text class="label base-t" x="300" y="482">train</text>
+  <line class="arr" x1="400" y1="482" x2="428" y2="482"/>
+  <rect class="base" x="430" y="460" width="200" height="44" rx="6" stroke-dasharray="4 3"/>
+  <text class="label base-t" x="530" y="482">predict</text>
+  <path class="arr" d="M530 504 L530 517 L415 517 L415 528"/>
+
+  <rect class="runner" x="315" y="530" width="200" height="44" rx="6"/>
+  <text class="label runner-t" x="415" y="552">Evaluation</text>
+  <line class="arr" x1="415" y1="574" x2="415" y2="598"/>
+
+  <rect class="runner" x="315" y="600" width="200" height="44" rx="6"/>
+  <text class="label runner-t" x="415" y="622">PipelineResult</text>
+
+  <rect class="runner" x="40" y="668" width="14" height="14" rx="3"/>
+  <text class="legend" x="62" y="675">PipelineRunner · Step 2</text>
+  <rect class="base" x="240" y="668" width="14" height="14" rx="3"/>
+  <text class="legend" x="262" y="675">MLPipeline base · provided</text>
+  <rect class="yours" x="460" y="668" width="14" height="14" rx="3"/>
+  <text class="legend" x="482" y="675">Your pipeline · Step 1</text>
+  <rect x="40" y="694" width="14" height="14" rx="3" fill="none" stroke="#5F5E5A" stroke-dasharray="3 2"/>
+  <text class="legend" x="62" y="701">Dashed: provided default, your pipeline may override it</text>
+</svg>
